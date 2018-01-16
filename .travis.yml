@@ -1,0 +1,27 @@
+language: python
+sudo: required
+dist: trusty
+cache:
+- apt
+- directories:
+  - "$HOME/.cache/pip"
+  - "$HOME/.pyenv"
+python:
+- 3.4
+env: PATH=bin/:$PATH
+virtualenv:
+  system_site_packages: true
+script:
+- pycodestyle --ignore=E501 pyramid_settings_wrapper
+- pylint -E --rcfile=.pylintrc pyramid_settings_wrapper
+- python setup.py test
+install:
+  - pip install pycodestyle
+  - pip install pylint
+deploy:
+  provider: pypi
+  user: mrichar1
+  on:
+    tags: true
+  password:
+    secure: oDRyIt3BPgweLXQ9FzAuajYihGZMDv0LbgUjARRwJUOqj8+zYqyDSOqAhgUgv9GAE8GVhueeIi8D+FIPu7vScN3zw6h3yOou2nWOQ/XucweGdCRkWt4QhHy59Y8K5Ecbvfxw/GUZ0kmvtoOknJFrbYZ8glAcFh6FalpyHPnGYNyN9DH7974Ihr6UL63dRpAsWQZ8+TCpgZw/9re54XtgXEjNOMyI/gqyvz67H20CWMJTbH3Es6K9E2swgW20dbuUAauqi7i/uuCtQIYvXAM0UnJSN7h7BnbeBmF/q4EaA+VENXgKhgHX/4GpJwQVm9gJD1ulH5bi43WbfFdh8SZayBo7pRIxfzjL/xLmTtlTF4x4Ix+tcJDKid5+DutVzDAty4WAaL0ZfxoPMB4+bVOzHnZ+Jqu4Hr4v9+uA4rNaSMxsFzHuq4xZJr3OnpdilldG762DpugfxJ/dRp2bkPb4Cs8OOkSTSRUZX0/k3FRFTNtwJyA9yqFXuhh0z2wCDpa2zjuVdiPu5ojq9ICiPJET1X9GhrHBMCXBEbHYbReBQ9PLBrEmTkCFB5mAWX2xgCq40LxrmyfzmsKRxX+HHxSzhInyk3TjOUZ+NiSnloOqp0cS5413UyM12taPAQhN9c/Ae9d3affWQjTrkZEqqS3a/4i8HEepinEYWPZwXi1gofA=
