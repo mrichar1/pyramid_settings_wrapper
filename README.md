@@ -45,7 +45,7 @@ from pyramid.config import Configurator
 import pyramid_settings_wrapper
 
 defaults = {
-    'name': {'val': '', 'desc': 'User's name'},
+    'name': {'val': '', 'desc': 'Username'},
     'admin': {'val': False, 'desc': 'Is this user an administrator?'},
     'groups': 'val': []},
 }
