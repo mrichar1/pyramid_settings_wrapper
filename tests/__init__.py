@@ -50,6 +50,26 @@ class TestWrapper(unittest.TestCase):
             conf = self.partconf(defaults=defaults, default_keys_only=True, prefix=['test'])
             self.assertTrue(any(log.levelname == "WARNING" for log in log_handler.records))
 
+    def test_config_string_class_asbool(self):
+        """Check that asbool() works correctly."""
+        conf = self.partconf(prefix=['test'])
+        self.assertTrue(conf.boolean.asbool())
+        # Implicit __bool__ call
+        self.assertTrue(conf.boolean)
+
+    def test_config_string_class_aslist(self):
+        """Check that aslist() parses strings to lists."""
+        test_list = ['cat', 'dog', 'fish']
+        conf = self.partconf(prefix=['test'])
+        self.assertIsInstance(conf.list.aslist(), list)
+        self.assertListEqual(conf.list.aslist(), test_list)
+
+    def test_sphinx_doc(self):
+        """sphinx docs should contain default settings."""
+        conf = self.partconf(prefix=['test'], defaults={'string': {'val': 'string', 'desc': 'string description'}})
+        docs = conf.sphinx_doc()
+        self.assertTrue('string description' in docs)
+
 
 if __name__ == "__main__":
     unittest.main()
