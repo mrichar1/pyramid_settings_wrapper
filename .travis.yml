@@ -18,6 +18,7 @@ script:
 install:
   - pip install pycodestyle
   - pip install pylint
+  - python setup.py -q install
 deploy:
   provider: pypi
   user: mrichar1
