@@ -4,18 +4,18 @@
 
 import copy
 import logging
-from pyramid.settings import asbool, aslist
+import pyramid.settings
 
 
 class ConfigString(str):
     """Add custom methods."""
     def asbool(self):
         """Access pyramid.settings.asbool in a pythonic way."""
-        return asbool(self)
+        return pyramid.settings.asbool(self)
 
     def aslist(self):
         """Access pyramid.settings.aslist in a pythonic way."""
-        return aslist(self, flatten=True)
+        return pyramid.settings.aslist(self, flatten=True)
 
     __bool__ = asbool
 
