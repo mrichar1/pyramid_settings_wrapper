@@ -74,13 +74,13 @@ class Settings():
 
         docslist = []
         docslist.append("""
-    **Configuration Options**
+**Configuration Options**
 
-    These options can be overridden in the pyramid app ini-file.
+These options can be overridden in the pyramid app ini-file.
 
-    .. code-block:: python
+.. code-block:: python
 
-    """)
+""")
         for key, data in sorted(self.defaults.items()):
             docslist.append("   # {}".format(data['desc']))
             docslist.append("   {}{} = {}\n".format(self.prefix, key, data['val']))
